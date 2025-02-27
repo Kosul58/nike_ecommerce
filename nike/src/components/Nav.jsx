@@ -5,8 +5,8 @@ import { navLinks } from "../constanst";
 const Nav = () => {
   return (
     <header className="padding-x py-8 fixed z-20 w-full">
-      <nav className="flex justify-center items-center max-container bg-blue-200 w-[80%] h-[60px] rounded-xl">
-        <a href="/" className="ml-20">
+      <nav className="flex justify-center items-center max-container bg-blue-200 w-[80%] h-[60px] rounded-xl sm:w-[90%]">
+        <a href="/" className="lg:ml-20">
           <img src={headerLogo} alt="Logo" width={130} height={29} />
         </a>
         <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden mr-[-10%]">
