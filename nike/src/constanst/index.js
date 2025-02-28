@@ -23,7 +23,7 @@ import {
 
 export const navLinks = [
   { href: "#home", label: "Home" },
-  { href: "#products", label: "Products" },
+  { label: "Products" },
   { href: "#about-us", label: "About Us" },
   { href: "#contact-us", label: "Contact Us" },
   { href: "#login", label: "Login" },

@@ -3,6 +3,7 @@ import { headerLogo } from "../assets/images";
 import { hamburger } from "../assets/icons";
 import { navLinks } from "../constanst";
 import { IoIosCloseCircle } from "react-icons/io";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = () => {
   const modalref = useRef(null);
@@ -20,14 +21,14 @@ const Nav = () => {
         <a href="/" className="ml-10 min-sm:ml-0">
           <img src={headerLogo} alt="Logo" width={130} height={29} />
         </a>
-        <ul className="flex-1 flex justify-center items-center gap-2 max-lg:hidden mr-[-10%]">
+        <ul className="flex-1 flex justify-center items-center gap-2 max-lg:hidden mr-[-5%]">
           {navLinks.map((item) => (
             <li
               key={item.label}
               className="w-[15%] h-[50px] flex justify-center items-center"
             >
               <a
-                href={item.href}
+                href={item.href ? item.href : "#pr"}
                 className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red"
               >
                 {item.label}
@@ -35,6 +36,13 @@ const Nav = () => {
             </li>
           ))}
         </ul>
+        <a href="#home">
+          <FaShoppingCart
+            size={26}
+            className="mr-10 cursor-pointer hover:scale-110 hover:text-white"
+          />
+        </a>
+
         <div
           className={` absolute right-5 max-lg:block transition-opacity duration-200 ${
             showburger ? "opacity-100" : "opacity-0"
