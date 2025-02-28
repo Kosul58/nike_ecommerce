@@ -20,6 +20,7 @@ const Login = () => {
         alert("Enter both password and value");
       } else {
         alert("Login Successfull");
+        setLogged(!logged);
       }
     } else {
       setLogin(!login);
@@ -44,7 +45,11 @@ const Login = () => {
   return (
     <>
       {/* Login part */}
-      <section className="flex flex-col bg-cyan-300 w-full h-screen">
+      <section
+        className={`flex flex-col bg-cyan-300 w-full h-screen ${
+          !logged ? "flex" : "hidden"
+        }`}
+      >
         <div className="absolute top-[15%] left-1/2 transform -translate-x-1/2 w-[100%] h-auto bg-inherit rounded-lg flex flex-1 justify-center items-center flex-wrap">
           {/* Login Form */}
           <form
@@ -120,6 +125,14 @@ const Login = () => {
             </button>
           </form>
         </div>
+      </section>
+
+      {/* After Login part */}
+      <section
+        className={`flex flex-col bg-blue-300 w-full h-screen
+          ${logged ? "flex" : "hidden"} justify-center items-center`}
+      >
+        Hello Bro
       </section>
     </>
   );

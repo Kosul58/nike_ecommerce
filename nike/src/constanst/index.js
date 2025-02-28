@@ -16,6 +16,7 @@ import {
   shoe5,
   shoe6,
   shoe7,
+  shoe8,
   thumbnailShoe1,
   thumbnailShoe2,
   thumbnailShoe3,
@@ -144,4 +145,59 @@ export const socialMedia = [
   { src: facebook, alt: "facebook logo" },
   { src: twitter, alt: "twitter logo" },
   { src: instagram, alt: "instagram logo" },
+];
+
+export const displayProducts = [
+  {
+    label: "Nike Air Force 1",
+    price: 120,
+    image: shoe4,
+  },
+  {
+    label: "Nike Air Max 90",
+    price: 130,
+    image: shoe5,
+  },
+  {
+    label: "Nike Dunk Low",
+    price: 110,
+    image: shoe6,
+  },
+  {
+    label: "Nike Air Jordan 1",
+    price: 150,
+    image: shoe7,
+  },
+  {
+    label: "Nike React Infinity Run",
+    price: 160,
+    image: shoe8,
+  },
+  {
+    label: "Nike Pegasus 40",
+    price: 140,
+    image: thumbnailShoe1,
+  },
+  {
+    label: "Nike Blazer Mid '77",
+    price: 100,
+    image: thumbnailShoe2,
+  },
+  {
+    label: "Nike LeBron 21",
+    price: 200,
+    image: thumbnailShoe3,
+  },
+  {
+    label: "Nike ZoomX Vaporfly",
+    price: 250,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/26c99fae-94a1-4815-bcc3-642ebc8ed5e6/zoomx-vaporfly-next-3-mens-road-racing-shoes-MVZbKz.png",
+  },
+  {
+    label: "Nike SB Dunk High",
+    price: 125,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/5828dcbf-b0d8-4711-98a0-ff8c4c7b8fd1/sb-dunk-high-pro-skate-shoes-5jjGcw.png",
+  },
 ];
