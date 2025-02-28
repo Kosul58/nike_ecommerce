@@ -3,6 +3,7 @@ import { headerLogo } from "../assets/images";
 import { hamburger } from "../assets/icons";
 import { navLinks } from "../constanst";
 import { IoIosCloseCircle } from "react-icons/io";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = () => {
   const modalref = useRef(null);
