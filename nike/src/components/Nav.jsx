@@ -16,15 +16,15 @@ const Nav = () => {
 
   return (
     <header className="padding-x py-8 fixed z-20 w-full">
-      <nav className="flex justify-evenly items-center max-container bg-blue-200 w-[85%] h-[60px] rounded-xl sm:w-[95%]">
-        <a href="/" className="lg:ml-20 max-[1200px]:ml-[-10]">
+      <nav className="flex justify-center items-center max-container bg-blue-200 w-[85%] h-[60px] rounded-xl sm:w-[95%]">
+        <a href="/" className="">
           <img src={headerLogo} alt="Logo" width={130} height={29} />
         </a>
-        <ul className="flex-1 flex justify-center items-center gap-2 max-lg:hidden mr-[-5%]">
+        <ul className="flex-1 flex justify-center items-center gap-2 max-lg:hidden mr-[-10%]">
           {navLinks.map((item) => (
             <li
               key={item.label}
-              className="w-[15%] h-[50px] flex justify-center items-center"
+              className="w-[12%] h-[50px] flex justify-center items-center"
             >
               <a
                 href={item.href}
