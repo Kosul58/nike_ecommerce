@@ -20,12 +20,9 @@ const Nav = () => {
     setburger(!showburger);
   };
 
-  const handleHrefClick = (href) => {
+  const handleHrefClick = async (href) => {
     if (!isHome) {
-      navigate("/", { replace: true });
-      setTimeout(() => {
-        window.location.hash = href;
-      }, 10);
+      navigate("/", { replace: false });
     }
   };
 
