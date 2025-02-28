@@ -28,7 +28,7 @@ const Nav = () => {
 
   return (
     <header className="padding-x py-8 fixed z-20 w-full">
-      <nav className="flex justify-center items-center max-container bg-blue-200 w-[85%] h-[60px] rounded-xl sm:w-[95%]">
+      <nav className="flex justify-center items-center max-container bg-blue-200 w-[85%] h-[60px] rounded-xl sm:w-[95%] shadow-[0_1px_5px_rgba(0,0,0,0.5)] max-sm:mt-[-1rem]">
         <Link to="/" className="ml-10 min-sm:ml-0">
           <img src={headerLogo} alt="Logo" width={130} height={29} />
         </Link>
@@ -60,7 +60,7 @@ const Nav = () => {
         <Link to="/cart">
           <FaShoppingCart
             size={26}
-            className="mr-10 cursor-pointer hover:scale-110 hover:text-white"
+            className="mr-10 cursor-pointer hover:scale-110 hover:text-white hidden min-[1030px]:block"
           />
         </Link>
 
@@ -82,7 +82,7 @@ const Nav = () => {
           ref={modalref}
           className={`absolute top-28 w-[80%] h-[70vh] border-2 z-30 rounded-xl bg-white shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-opacity duration-200 ${
             showModal ? "opacity-100" : "opacity-0 pointer-events-none"
-          } flex items-center justify-center flex-col lg:hidden`}
+          } flex items-center justify-center flex-col lg:hidden `}
         >
           <IoIosCloseCircle
             size={30}
@@ -93,7 +93,7 @@ const Nav = () => {
             {navLinks.map((item) => (
               <li
                 key={item.label}
-                className="w-[200px] h-[50px] flex justify-center items-center rounded-sm cursor-pointer"
+                className="w-[200px] h-[50px] flex justify-center items-center rounded-sm cursor-pointer  sm:h-[25px]"
               >
                 {item.link ? (
                   <Link

@@ -1,4 +1,5 @@
 import { products } from "../constanst";
+import { Link } from "react-router-dom";
 import PopularProductCard from "./PopularProductCard";
 
 const PopularProducts = () => {
@@ -18,6 +19,11 @@ const PopularProducts = () => {
           <PopularProductCard key={product.name} {...product} />
         ))}
       </div>
+      <Link to="/product">
+        <button className="w-[20%] h-16 absolute left-1/2 transform -translate-x-1/2 mt-10 rounded-xl bg-coral-red text-cyan-50 text-2xl hover:bg-green-300 hover:text-black">
+          View all Products
+        </button>
+      </Link>
     </section>
   );
 };
