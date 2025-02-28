@@ -7,6 +7,10 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
+
   const modalref = useRef(null);
   const [showModal, setShowModal] = useState(false);
   const [showburger, setburger] = useState(true);
@@ -14,6 +18,15 @@ const Nav = () => {
   const toggleModal = () => {
     setShowModal(!showModal);
     setburger(!showburger);
+  };
+
+  const handleHrefClick = (href) => {
+    if (!isHome) {
+      navigate("/", { replace: true });
+      setTimeout(() => {
+        window.location.hash = href;
+      }, 10);
+    }
   };
 
   return (
@@ -37,7 +50,8 @@ const Nav = () => {
                 </Link>
               ) : (
                 <a
-                  href={item.href}
+                  href={isHome ? item.href : "/"}
+                  onClick={() => !isHome && handleHrefClick(item.href)}
                   className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red cursor-pointer"
                 >
                   {item.label}
@@ -94,9 +108,12 @@ const Nav = () => {
                   </Link>
                 ) : (
                   <a
-                    href={item.href}
+                    href={isHome ? item.href : "/"}
+                    onClick={() => {
+                      !isHome && handleHrefClick(item.href);
+                      toggleModal;
+                    }}
                     className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red"
-                    onClick={toggleModal}
                   >
                     {item.label}
                   </a>
