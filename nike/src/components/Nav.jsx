@@ -28,21 +28,18 @@ const Nav = () => {
               className="w-[15%] h-[50px] flex justify-center items-center"
             >
               <a
-                href={item.href ? item.href : "#pr"}
-                className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red"
+                href={item.href}
+                className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red cursor-pointer"
               >
                 {item.label}
               </a>
             </li>
           ))}
         </ul>
-        <a href="#home">
-          <FaShoppingCart
-            size={26}
-            className="mr-10 cursor-pointer hover:scale-110 hover:text-white"
-          />
-        </a>
-
+        <FaShoppingCart
+          size={26}
+          className="mr-10 cursor-pointer hover:scale-110 hover:text-white"
+        />
         <div
           className={` absolute right-5 max-lg:block transition-opacity duration-200 ${
             showburger ? "opacity-100" : "opacity-0"
