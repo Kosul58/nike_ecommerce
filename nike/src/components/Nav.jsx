@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { headerLogo } from "../assets/images";
 import { hamburger } from "../assets/icons";
 import { navLinks } from "../constanst";
@@ -18,30 +19,42 @@ const Nav = () => {
   return (
     <header className="padding-x py-8 fixed z-20 w-full">
       <nav className="flex justify-center items-center max-container bg-blue-200 w-[85%] h-[60px] rounded-xl sm:w-[95%]">
-        <a href="/" className="ml-10 min-sm:ml-0">
+        <Link to="/" className="ml-10 min-sm:ml-0">
           <img src={headerLogo} alt="Logo" width={130} height={29} />
-        </a>
+        </Link>
         <ul className="flex-1 flex justify-center items-center gap-2 max-lg:hidden mr-[-5%]">
           {navLinks.map((item) => (
             <li
               key={item.label}
               className="w-[15%] h-[50px] flex justify-center items-center"
             >
-              <a
-                href={item.href}
-                className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red cursor-pointer"
-              >
-                {item.label}
-              </a>
+              {item.link ? (
+                <Link
+                  to={item.link}
+                  className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red cursor-pointer"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red cursor-pointer"
+                >
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
-        <FaShoppingCart
-          size={26}
-          className="mr-10 cursor-pointer hover:scale-110 hover:text-white"
-        />
+        <Link to="/cart">
+          <FaShoppingCart
+            size={26}
+            className="mr-10 cursor-pointer hover:scale-110 hover:text-white"
+          />
+        </Link>
+
         <div
-          className={` absolute right-5 max-lg:block transition-opacity duration-200 ${
+          className={`absolute right-5 max-lg:block transition-opacity duration-200 ${
             showburger ? "opacity-100" : "opacity-0"
           } lg:hidden`}
           onClick={toggleModal}
@@ -56,7 +69,7 @@ const Nav = () => {
         </div>
         <div
           ref={modalref}
-          className={`absolute top-28 w-[80%] h-[70vh] border-2 z-30 rounded-xl  bg-white shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-opacity duration-200 ${
+          className={`absolute top-28 w-[80%] h-[70vh] border-2 z-30 rounded-xl bg-white shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-opacity duration-200 ${
             showModal ? "opacity-100" : "opacity-0 pointer-events-none"
           } flex items-center justify-center flex-col lg:hidden`}
         >
@@ -69,16 +82,33 @@ const Nav = () => {
             {navLinks.map((item) => (
               <li
                 key={item.label}
-                className="w-[200px] h-[50px] flex justify-center items-center rounded-sm cursor-pointer "
+                className="w-[200px] h-[50px] flex justify-center items-center rounded-sm cursor-pointer"
               >
-                <a
-                  href={item.href}
-                  className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red"
-                >
-                  {item.label}
-                </a>
+                {item.link ? (
+                  <Link
+                    to={item.link}
+                    className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red"
+                    onClick={toggleModal}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="font-montserrat text-lg text-black hover:text-[110%] hover:text-coral-red"
+                    onClick={toggleModal}
+                  >
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
+            <Link to="/cart">
+              <FaShoppingCart
+                size={26}
+                className="cursor-pointer hover:scale-110 hover:text-white"
+              />
+            </Link>
           </ul>
         </div>
       </nav>
