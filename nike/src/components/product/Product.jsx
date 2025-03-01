@@ -13,6 +13,17 @@ const Product = () => {
     );
   };
 
+  const [selectedYear, setSelectedYear] = useState("");
+
+  const handleCheckboxChange = (event) => {
+    const value = event.target.name;
+    if (value === selectedYear) {
+      setSelectedYear("");
+    } else {
+      setSelectedYear(event.target.name);
+    }
+  };
+
   const filterprice = async () => {
     const min = minprice.current.value;
     const max = maxprice.current.value;
@@ -21,22 +32,16 @@ const Product = () => {
     );
   };
 
-  const [selectedYear, setSelectedYear] = useState("");
-
-  const handleCheckboxChange = (event) => {
-    setSelectedYear(event.target.name);
-  };
-
   const filteryear = async () => {
     const year = selectedYear;
-    setFilteredProducts(filteredproducts.filter((item) => item.year == year));
+    if (year) {
+      setFilteredProducts(displayProducts.filter((item) => item.year == year));
+    } else {
+      setFilteredProducts(displayProducts);
+    }
   };
 
-  const filterprods = async () => {
-    const year = selectedYear;
-    setFilteredProducts(displayProducts.filter((item) => item.year == year));
-    console.log(filteredproducts);
-  };
+  const filterprods = async () => {};
 
   return (
     <section className="bg-emerald-300 w-full h-[100vh] flex items-center justify-center ">
