@@ -4,7 +4,7 @@ import { displayProducts } from "../../constanst";
 const Product = () => {
   let myproducts = displayProducts;
   return (
-    <section className="bg-emerald-300 w-full h-[100vh] flex items-center justify-center">
+    <section className="bg-emerald-300 w-full h-[100vh] flex items-center justify-center ">
       <div className="absolute top-[80px] w-[100%] min-h-[80vh] h-auto bg-inherit flex justify-center items-start gap-4">
         <aside className=" sticky top-[150px] w-[20%] h-[70vh] bg-white min-h-[400px] rounded-xl overflow-y-auto no-scrollbar  max-sm:hidden">
           <div className="w-[100%] h-[40px] bg-yellow-100 flex justify-center items-center text-xl">

@@ -4,6 +4,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -13,6 +14,28 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+}
+
+body {
+  @apply custom-scrollbar overflow-y-auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #d47706, #f66a3b);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0284c7, #2563eb);
 }
 
 @layer components {
