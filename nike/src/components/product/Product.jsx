@@ -24,24 +24,79 @@ const Product = () => {
     }
   };
 
-  const filterprice = async () => {
+  // const filterprice = async () => {
+  //   const min = minprice.current.value;
+  //   const max = maxprice.current.value;
+  //   setFilteredProducts(
+  //     displayProducts.filter((item) => item.price >= min && item.price <= max)
+  //   );
+  // };
+
+  // const filteryear = async () => {
+  //   const year = selectedYear;
+  //   if (year) {
+  //     setFilteredProducts(displayProducts.filter((item) => item.year == year));
+  //   } else {
+  //     setFilteredProducts(displayProducts);
+  //   }
+  // };
+
+  const filterprods = async () => {
     const min = minprice.current.value;
     const max = maxprice.current.value;
-    setFilteredProducts(
-      displayProducts.filter((item) => item.price >= min && item.price <= max)
-    );
-  };
-
-  const filteryear = async () => {
     const year = selectedYear;
-    if (year) {
+    if (year == "before") {
+      alert("upcoming");
+      return;
+    }
+    if (!min && !max & !year) {
+      alert("Enter selection criteria");
+    } else if ((min || max) && !year) {
+      if (min && !max) {
+        setFilteredProducts(
+          displayProducts.filter((item) => item.price >= min)
+        );
+      } else if (!min && max) {
+        setFilteredProducts(
+          displayProducts.filter((item) => item.price <= max)
+        );
+      } else {
+        setFilteredProducts(
+          displayProducts.filter(
+            (item) => item.price >= min && item.price <= max
+          )
+        );
+      }
+      // alert("min and max but not year");
+    } else if (!min && !max && year) {
       setFilteredProducts(displayProducts.filter((item) => item.year == year));
-    } else {
-      setFilteredProducts(displayProducts);
+      // alert("no min and max but have year");
+    } else if ((min || max) && year) {
+      if (min && !max) {
+        setFilteredProducts(
+          displayProducts.filter(
+            (item) => item.price >= min && item.year == year
+          )
+        );
+      } else if (!min && max) {
+        setFilteredProducts(
+          displayProducts.filter(
+            (item) => item.price <= max && item.year == year
+          )
+        );
+      } else {
+        setFilteredProducts(
+          displayProducts.filter(
+            (item) =>
+              item.price >= min && item.price <= max && item.year == year
+          )
+        );
+      }
+      // alert("all values present");
     }
   };
 
-  const filterprods = async () => {};
+  const [productvisible, setProductVisible] = useState(false);
 
   return (
     <section className="bg-emerald-300 w-full h-[100vh] flex items-center justify-center ">
@@ -53,7 +108,7 @@ const Product = () => {
           </div>
           <div className="w-[100%] h-[25%] bg-yellow-200 flex justify-center items-center flex-col">
             <h2>Price Range</h2>
-            <div className="w-[100%] h-[60%] min-h-[70px] flex justify-center items-center gap-2">
+            <div className="w-[100%] h-[60%] min-h-[70px] flex justify-center items-center gap-2 flex-wrap">
               <input
                 type="number"
                 name="minp"
@@ -61,6 +116,7 @@ const Product = () => {
                 className="w-[120px] h-[50px] px-3 rounded-lg shadow-md"
                 placeholder="$min"
                 ref={minprice}
+                min={1}
               />
               <input
                 type="number"
@@ -69,6 +125,7 @@ const Product = () => {
                 className="w-[120px] h-[50px] px-3 rounded-lg shadow-md"
                 placeholder="$max"
                 ref={maxprice}
+                min={1}
               />
             </div>
           </div>
@@ -134,6 +191,10 @@ const Product = () => {
         </aside>
         {/* product display section  */}
         <main className="w-[77%] h-auto min-h-[80vh]  bg-white mb-3 rounded-xl  flex justify-center items-center flex-col">
+          <div
+            className="fixed top-1/2 -translate-y-1/2 xl:right-2/8 lg:right-1/8 w-[30vw] h-[50vh]  min-h[300px] max-[1500px]:min-w-[500px] max-sm:min-w-[300px]
+          bg-cyan-300 z-10"
+          ></div>
           <div
             className="w-[90%] h-[10vh] bg-inerit flex justify-center items-center gap-6"
             id="searchbar"
