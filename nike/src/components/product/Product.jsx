@@ -6,7 +6,7 @@ const Product = () => {
   const search = useRef(null);
   const maxprice = useRef(null);
   const minprice = useRef(null);
-  const itemcount = useRef(null);
+  const itemcount = useRef(1);
   const [filteredproducts, setFilteredProducts] = useState(displayProducts);
   const searchprods = () => {
     let query = search.current.value.toLowerCase();
@@ -237,6 +237,7 @@ const Product = () => {
                 ref={itemcount}
                 placeholder="1"
                 className="outline-none px-2 w-14 h-10 rounded-md"
+                min={1}
               />
               <button className="bg-white px-2 rounded-md hover:bg-green-300 hover:scale-110">
                 Add to Cart
