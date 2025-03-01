@@ -86,7 +86,7 @@ const Nav = () => {
         >
           <IoIosCloseCircle
             size={30}
-            className="hover:text-red-500 absolute right-0 top-0"
+            className="hover:text-red-500 absolute right-0 top-0 cursor-pointer"
             onClick={toggleModal}
           />
           <ul className="flex-1 flex justify-evenly items-center flex-col">

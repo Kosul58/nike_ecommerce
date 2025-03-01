@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import { displayProducts } from "../../constanst";
+import { IoIosCloseCircle } from "react-icons/io";
 
 const Product = () => {
   const search = useRef(null);
   const maxprice = useRef(null);
   const minprice = useRef(null);
+  const itemcount = useRef(null);
   const [filteredproducts, setFilteredProducts] = useState(displayProducts);
   const searchprods = () => {
     let query = search.current.value.toLowerCase();
@@ -97,6 +99,14 @@ const Product = () => {
   };
 
   const [productvisible, setProductVisible] = useState(false);
+  const [modalitem, setModalItem] = useState("");
+  const showModal = (item) => {
+    setProductVisible(true);
+    setModalItem(item);
+  };
+  const closeModal = () => {
+    setProductVisible(false);
+  };
 
   return (
     <section className="bg-emerald-300 w-full h-[100vh] flex items-center justify-center ">
@@ -192,9 +202,47 @@ const Product = () => {
         {/* product display section  */}
         <main className="w-[77%] h-auto min-h-[80vh]  bg-white mb-3 rounded-xl  flex justify-center items-center flex-col">
           <div
-            className="fixed top-1/2 -translate-y-1/2 xl:right-2/8 lg:right-1/8 w-[30vw] h-[50vh]  min-h[300px] max-[1500px]:min-w-[500px] max-sm:min-w-[300px]
-          bg-cyan-300 z-10"
-          ></div>
+            className={`fixed top-1/2 -translate-y-1/2 xl:right-2/8 lg:right-1/8 w-[30vw] h-[50vh]  min-h[300px] max-[1500px]:min-w-[500px] max-sm:min-w-[300px]
+              max-sm:min-h-[500px] gap-2
+          bg-cyan-300 z-10 ${
+            productvisible ? "flex" : "hidden"
+          } items-center justify-center flex-col rounded-xl`}
+          >
+            {" "}
+            <IoIosCloseCircle
+              size={30}
+              className="hover:text-red-500 absolute right-1 top-1 cursor-pointer"
+              onClick={closeModal}
+            />
+            <div className="flex gap-2 w-auto flex-wrap justify-center items-center px-2">
+              <img
+                src={modalitem.image}
+                alt="showimg"
+                className="w-[250px] h-[250px] object-contain"
+              />
+              <h2 className="flex items-start justify-center flex-col border-2 bg-slate-200 rounded-lg px-2">
+                Name:
+                <span>{modalitem.label}</span>
+                Price:
+                <span className="text-coral-red">${modalitem.price}</span>
+                Year:
+                <span>{modalitem.year}</span>
+              </h2>
+            </div>
+            <div className="flex gap-4">
+              <input
+                type="number"
+                name="count"
+                id="count"
+                ref={itemcount}
+                placeholder="1"
+                className="outline-none px-2 w-14 h-10 rounded-md"
+              />
+              <button className="bg-white px-2 rounded-md hover:bg-green-300 hover:scale-110">
+                Add to Cart
+              </button>
+            </div>
+          </div>
           <div
             className="w-[90%] h-[10vh] bg-inerit flex justify-center items-center gap-6"
             id="searchbar"
@@ -220,6 +268,7 @@ const Product = () => {
               <div
                 className="w-48 h-48 bg-white m-6 rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.5)] flex flex-col justify-center items-center cursor-pointer hover:scale-110 hover:shadow-[0_0_10px_rgba(4,238,32,0.5)]"
                 key={item.label}
+                onClick={() => showModal(item)}
               >
                 <img
                   src={item.image}
