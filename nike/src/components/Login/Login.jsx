@@ -132,7 +132,10 @@ const Login = () => {
         className={`flex flex-col bg-blue-300 w-full h-screen
           ${logged ? "flex" : "hidden"} justify-center items-center`}
       >
-        Hello Bro
+        <div className="mt-8 w-[90vw] h-[80vh] bg-white/60 rounded-xl flex items-center justify-center gap-4">
+          <aside className="w-[20%] h-[90%] bg-indigo-300 rounded-lg"></aside>
+          <main className="w-[75%] h-[90%] bg-slate-400 rounded-lg"></main>
+        </div>
       </section>
     </>
   );

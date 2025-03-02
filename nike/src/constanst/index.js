@@ -297,3 +297,5 @@ export const displayProducts = [
     year: 2025,
   },
 ];
+
+export const mycart = [];

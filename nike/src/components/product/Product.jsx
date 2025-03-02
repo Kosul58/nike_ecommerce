@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { displayProducts } from "../../constanst";
 import { IoIosCloseCircle } from "react-icons/io";
+import { mycart } from "../../constanst";
 
 const Product = () => {
   const search = useRef(null);
@@ -108,15 +109,20 @@ const Product = () => {
     setProductVisible(false);
   };
 
+  const addtocart = (item) => {
+    alert("item added to cart");
+    mycart.push(item);
+  };
+
   return (
     <section className="bg-emerald-300 w-full h-[100vh] flex items-center justify-center ">
       <div className="absolute top-[80px] w-[100%] min-h-[80vh] h-auto bg-inherit flex justify-center items-start gap-4">
         {/* product filter section */}
-        <aside className=" sticky top-[150px] w-[20%] h-[70vh] bg-white min-h-[400px] rounded-xl overflow-y-auto no-scrollbar  max-sm:hidden">
-          <div className="w-[100%] h-[40px] bg-yellow-100 flex justify-center items-center text-xl">
+        <aside className=" sticky top-[150px] w-[20%] h-[70vh] bg-slate-200 min-h-[400px] rounded-xl overflow-y-auto no-scrollbar  max-sm:hidden">
+          <div className="w-[100%] h-[40px]  flex justify-center items-center text-xl">
             <h2 className="font-montserrat"> Filters</h2>
           </div>
-          <div className="w-[100%] h-[25%] bg-yellow-200 flex justify-center items-center flex-col">
+          <div className="w-[100%] h-[25%]  flex justify-center items-center flex-col">
             <h2>Price Range</h2>
             <div className="w-[100%] h-[60%] min-h-[70px] flex justify-center items-center gap-2 flex-wrap">
               <input
@@ -139,22 +145,22 @@ const Product = () => {
               />
             </div>
           </div>
-          <div className="w-[100%] h-[50%] bg-yellow-300 flex justify-center items-center flex-col gap-1">
+          <div className="w-[100%] h-[50%] flex justify-center items-center flex-col gap-1">
             <h2>Year</h2>
 
-            <div className="w-[80%] h-[40px] flex justify-center items-center gap-2">
+            <label className="w-[60%] h-[40px] flex justify-center items-center gap-2 cursor-pointer has-[:checked]:bg-green-300 rounded-xl">
               <input
                 type="checkbox"
                 name="2025"
                 id="2025"
-                className="w-4 h-4"
+                className="w-4 h-4 "
                 checked={selectedYear === "2025"}
                 onChange={handleCheckboxChange}
               />
               <h2>2025</h2>
-            </div>
+            </label>
 
-            <div className="w-[80%] h-[40px] flex justify-center items-center gap-2">
+            <label className="w-[60%] h-[40px] flex justify-center items-center gap-2 cursor-pointer  has-[:checked]:bg-green-300 rounded-xl">
               <input
                 type="checkbox"
                 name="2024"
@@ -164,9 +170,9 @@ const Product = () => {
                 onChange={handleCheckboxChange}
               />
               <h2>2024</h2>
-            </div>
+            </label>
 
-            <div className="w-[80%] h-[40px] flex justify-center items-center gap-2">
+            <label className="w-[60%] h-[40px] flex justify-center items-center gap-2 cursor-pointer  has-[:checked]:bg-green-300 rounded-xl">
               <input
                 type="checkbox"
                 name="2023"
@@ -176,9 +182,9 @@ const Product = () => {
                 onChange={handleCheckboxChange}
               />
               <h2>2023</h2>
-            </div>
+            </label>
 
-            <div className="w-[80%] h-[40px] flex justify-center items-center gap-2">
+            <label className="w-[60%] h-[40px] flex justify-center items-center gap-2 cursor-pointer  has-[:checked]:bg-green-300 rounded-xl">
               <input
                 type="checkbox"
                 name="before"
@@ -188,7 +194,7 @@ const Product = () => {
                 onChange={handleCheckboxChange}
               />
               <h2>Before</h2>
-            </div>
+            </label>
           </div>
           <div className="w-[100%] h-[10%] bg-inherit flex justify-center">
             <button
@@ -206,7 +212,7 @@ const Product = () => {
               max-sm:min-h-[500px] gap-2
           bg-cyan-300 z-10 ${
             productvisible ? "flex" : "hidden"
-          } items-center justify-center flex-col rounded-xl`}
+          } items-center justify-center flex-col rounded-xl shadow-lg`}
           >
             {" "}
             <IoIosCloseCircle
@@ -218,9 +224,9 @@ const Product = () => {
               <img
                 src={modalitem.image}
                 alt="showimg"
-                className="w-[250px] h-[250px] object-contain"
+                className="w-[250px] h-[250px] object-contain "
               />
-              <h2 className="flex items-start justify-center flex-col border-2 bg-slate-200 rounded-lg px-2">
+              <h2 className="flex items-start justify-center flex-col border-2 bg-slate-200 rounded-lg px-2 shadow-sm">
                 Name:
                 <span>{modalitem.label}</span>
                 Price:
@@ -239,7 +245,10 @@ const Product = () => {
                 className="outline-none px-2 w-14 h-10 rounded-md"
                 min={1}
               />
-              <button className="bg-white px-2 rounded-md hover:bg-green-300 hover:scale-110">
+              <button
+                className="bg-white px-2 rounded-md hover:bg-green-300 hover:scale-110"
+                onClick={() => addtocart(modalitem)}
+              >
                 Add to Cart
               </button>
             </div>
