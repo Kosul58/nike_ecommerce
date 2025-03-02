@@ -10,6 +10,7 @@ const Login = () => {
   const spwd = useRef(null);
   const scpwd = useRef(null);
   const semail = useRef(null);
+  const [dslider, setdslider] = useState("un");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -39,6 +40,13 @@ const Login = () => {
       setLogin(!login);
     } else {
       alert("Login Successfull");
+    }
+  };
+
+  const dashboradSlide = (val) => {
+    setdslider(val);
+    if (val == "lo") {
+      setLogged(!logged);
     }
   };
 
@@ -133,8 +141,46 @@ const Login = () => {
           ${logged ? "flex" : "hidden"} justify-center items-center`}
       >
         <div className="mt-8 w-[90vw] h-[80vh] bg-white/60 rounded-xl flex items-center justify-center gap-4">
-          <aside className="w-[20%] h-[90%] bg-indigo-300 rounded-lg"></aside>
-          <main className="w-[75%] h-[90%] bg-slate-400 rounded-lg"></main>
+          <aside className="w-[20%] h-[90%] bg-indigo-300 rounded-lg flex justify-center items-center">
+            <ul className="w-[85%] h-[90%] flex justify-center items-center flex-col gap-3">
+              <li className="w-[100%] h-[60px] text-center">User Name</li>
+              <li
+                className="w-[100%] h-[60px] bg-slate-200 rounded-md cursor-pointer flex items-center justify-center text-lg hover:bg-blue-400"
+                onClick={() => dashboradSlide("to")}
+              >
+                Track Order
+              </li>
+              <li
+                className="w-[100%] h-[60px] bg-slate-200 rounded-md cursor-pointer  flex items-center justify-center text-lg hover:bg-blue-400"
+                onClick={() => dashboradSlide("oh")}
+              >
+                Order History
+              </li>
+              <li
+                className="w-[100%] h-[60px] bg-slate-200 rounded-md cursor-pointer  flex items-center justify-center text-lg hover:bg-blue-400"
+                onClick={() => dashboradSlide("ui")}
+              >
+                User Info
+              </li>
+              <li
+                className="w-[100%] h-[60px] bg-slate-200 rounded-md cursor-pointer  flex items-center justify-center text-lg hover:bg-red-400"
+                onClick={() => dashboradSlide("lo")}
+              >
+                Log Out
+              </li>
+            </ul>
+          </aside>
+          <main className="w-[75%] h-[90%] bg-slate-400 rounded-lg">
+            {dslider == "to" ? (
+              <h1>This is track order part</h1>
+            ) : dslider == "oh" ? (
+              <h1>This is order history part</h1>
+            ) : dslider == "ui" ? (
+              <h1>This is User info part</h1>
+            ) : (
+              <h1>This is username part</h1>
+            )}
+          </main>
         </div>
       </section>
     </>
