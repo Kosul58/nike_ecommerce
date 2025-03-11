@@ -7,15 +7,18 @@ const Cart = () => {
   const [checkout, setCheckout] = useState(false);
   const [cart, setCart] = useState(mycart);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(null);
 
   const handleCheckbox = (item) => {
     setSelectedItems((prev) => {
       const updatedItems = prev.includes(item)
         ? prev.filter((i) => i !== item)
         : [...prev, item];
-      const total = updatedItems.reduce((sum, i) => sum + i.price, 0);
-      setPrice(total);
+      const total = updatedItems.reduce(
+        (sum, i) => sum + i.price * i.quantity,
+        0
+      );
+      setPrice(total.toFixed(2));
       return updatedItems;
     });
   };
@@ -70,7 +73,7 @@ const Cart = () => {
               {cart.map((item, index) => (
                 <li
                   key={index}
-                  className="w-[400px] h-[300px] mt-4 mb-8 flex justify-center items-center bg-zinc-300 shadow-[0_0_10px_rgba(0,0,0,0.3)] has-[:checked]:bg-green-300 rounded-xl relative max-sm:w-[300px] px-2"
+                  className="w-[400px] h-[300px] mt-4 mb-8 flex justify-center items-center bg-zinc-300 shadow-[0_0_10px_rgba(0,0,0,0.3)] has-[:checked]:bg-green-300 rounded-xl relative max-sm:w-[300px] px-2 gap-2 max-sm:h-fit max-sm:flex-col max-[350px]:w-[250px]"
                 >
                   <MdDelete
                     className="w-8 h-8 cursor-pointer absolute top-1 right-1 text-red-500"
@@ -88,15 +91,15 @@ const Cart = () => {
                   <img
                     src={item.image}
                     alt={item.label}
-                    className="w-[200px] h-[200px]"
+                    className="w-[200px] h-[200px] object-contain"
                   />
-                  <h1 className="flex justify-center items-start px-2 flex-col">
+                  <h1 className="flex justify-center items-start px-2 flex-col max-w-[150px] bg-white rounded-lg mb-4">
                     Name:
                     <span>{item.label}</span>
                     Price:
                     <span className="text-coral-red">${item.price}</span>
                     Quantity:
-                    <span>1</span>
+                    <span>{item.quantity}</span>
                   </h1>
                 </li>
               ))}
@@ -104,9 +107,9 @@ const Cart = () => {
           )}
 
           <div className="w-full h-[10vh] bg-coral-red absolute bottom-0 flex justify-evenly items-center">
-            <h1>Total Items: {selectedItems.length}</h1>
+            <h1>Items: {selectedItems.length}</h1>
             <h1>
-              Total Price: <span>${price}</span>
+              Price: <span>${price}</span>
             </h1>
             <button
               className="w-[100px] h-[40px] bg-white rounded-xl hover:scale-110 hover:bg-green-400"

@@ -56,12 +56,12 @@ const Login = () => {
       <section
         className={`flex flex-col bg-cyan-300 w-full h-screen ${
           !logged ? "flex" : "hidden"
-        }`}
+        } `}
       >
-        <div className="absolute top-[15%] left-1/2 transform -translate-x-1/2 w-[100%] h-auto bg-inherit rounded-lg flex flex-1 justify-center items-center flex-wrap">
+        <div className="absolute top-[15%] left-1/2 transform -translate-x-1/2 w-[100%] h-auto bg-inherit rounded-lg flex flex-1 justify-center items-center flex-wrap py-8">
           {/* Login Form */}
           <form
-            className="w-[45vw] h-[75vh] bg-coral-red min-w-[600px] xl:rounded-s-xl max-lg:rounded-t-lg flex flex-col justify-center items-center gap-2 max-[700px]:min-w-[400px] max-[450px]:min-w-[300px]"
+            className="w-[45vw] h-[75vh] bg-coral-red min-w-[600px] xl:rounded-s-xl max-lg:rounded-t-lg flex flex-col justify-center items-center gap-2 max-[700px]:min-w-[400px] max-[450px]:min-w-[90%]"
             onSubmit={handleLogin}
           >
             <div
@@ -92,7 +92,7 @@ const Login = () => {
 
           {/* Signup Form */}
           <form
-            className="w-[45vw] h-[75vh] bg-yellow-200 min-w-[600px] xl:rounded-e-xl max-lg:rounded-b-lg flex flex-col justify-center items-center gap-2 max-[700px]:min-w-[400px] max-[450px]:min-w-[320px]"
+            className="w-[45vw] h-[75vh] bg-yellow-200 min-w-[600px] xl:rounded-e-xl max-lg:rounded-b-lg flex flex-col justify-center items-center gap-2 max-[700px]:min-w-[400px] max-[450px]:min-w-[90%]"
             onSubmit={handleSignup}
           >
             <div
