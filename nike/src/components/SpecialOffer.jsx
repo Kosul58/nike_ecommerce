@@ -1,6 +1,7 @@
 import { arrowRight } from "../assets/icons";
 import { offer } from "../assets/images";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 const SpecialOffer = () => {
   return (
     <section className="flex justify-between items-center max-xl:flex-col-reverse gap-10 max-container">
@@ -29,7 +30,10 @@ const SpecialOffer = () => {
           nothing short of exceptional.
         </p>
         <div className="mt-11 flex flex-wrap gap-4">
-          <Button label="Shop now" iconURL={arrowRight} />
+          <Link to="/product">
+            <Button label="Shop now" iconURL={arrowRight} />
+          </Link>
+
           <Button
             label="Learn more"
             backgroundColor="bg-white"

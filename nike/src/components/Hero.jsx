@@ -5,6 +5,7 @@ import { shoes, statistics } from "../constanst";
 import ShoeCard from "./ShoeCard";
 import Button from "./Button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Hero = () => {
   const [bigshoe, setBigshoe] = useState(shoex);
   return (
@@ -28,7 +29,10 @@ const Hero = () => {
           Discover stylish Nike arrivals, quality comfort, and innovation for
           your active life.
         </p>
-        <Button label="Shop now" iconURL={arrowRight} />
+        <Link to="/product">
+          <Button label="Shop now" iconURL={arrowRight} />
+        </Link>
+
         <div className="flex justify-start items-start flex-wrap w-full mt-20 gap-16">
           {statistics.map((stat, index) => (
             <div key={stat.label}>

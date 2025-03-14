@@ -10,29 +10,46 @@ const Product = () => {
   const maxprice = useRef(null);
   const minprice = useRef(null);
   const itemcount = useRef(1);
-
-  const [filteredproducts, setFilteredProducts] = useState(data.slice(0, 50));
+  const jpt = [];
+  for (let i = 0; i < data.length; i += 15) {
+    jpt.push(i);
+  }
+  let showdatax = data.filter((x, i) => jpt.includes(i));
+  const [filteredproducts, setFilteredProducts] = useState(showdatax);
+  const [searchdata, setSearchdata] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [searchstate, setSearchstate] = useState(false);
 
   // function transformdata(data) {
-  //   return (
-  //     data.data?.map((item) =>
-  //       item.model
+  //   let datax =
+  //     data.data?.map((item, i) =>
+  //       item.model && item.avg_price
   //         ? {
   //             id: item.id,
   //             label: item.model,
   //             price: parseFloat(item.avg_price.toFixed(2)), // Rounds to 2 decimal places
   //             image: item.image,
-  //             year: new Date(item.created_at).getFullYear(), // Extracts year from date
+  //             year: i < 30 ? 2025 : i < 60 ? 2024 : 2023, // Extracts year from date
   //           }
   //         : {}
-  //     ) || []
-  //   );
+  //     ) || [];
+  //   const filteredArray = [];
+  //   const seenLabels = new Set();
+  //   for (const item of datax) {
+  //     if (!seenLabels.has(item.label)) {
+  //       seenLabels.add(item.label);
+  //       filteredArray.push(item);
+  //     }
+  //   }
+  //   return filteredArray.filter((x) => {
+  //     if (x.id) return x;
+  //   });
   // }
 
-  // const fetchNikeShoes = async () => {
-  //   let url = `https://api.sneakersapi.dev/api/v3/stockx/products/?brand=Nike&limit=100&page=400`;
+  // const fetchNikeShoes = async (query) => {
+  //   let url = `https://api.sneakersapi.dev/api/v3/stockx/products/?brand=Nike&limit=100&query=${encodeURIComponent(
+  //     query
+  //   )}`;
   //   const options = {
   //     method: "GET",
   //     headers: {
@@ -68,6 +85,7 @@ const Product = () => {
   // }, []);
 
   // Search Products Function
+
   const searchprods = async () => {
     if (!searchstate) {
       setSearchstate(true);
@@ -79,7 +97,23 @@ const Product = () => {
         if (x.label.toLowerCase().includes(query)) return x;
       }
     });
-    setFilteredProducts(fdata);
+    if (fdata.length < 1) {
+      alert("No shoes found of the given name");
+    } else {
+      setFilteredProducts(fdata);
+      setSearchdata(fdata);
+    }
+
+    //to get data from webapi start
+    // let query = search.current.value;
+    // const data = await fetchNikeShoes(query);
+    // console.log(data);
+    // if (data.length < 1) {
+    //   alert("No shoes found of the given name");
+    // } else {
+    //   setFilteredProducts(data);
+    // }
+    //to get data from webapi end
   };
 
   const handleCheckboxChange = (event) => {
@@ -122,42 +156,30 @@ const Product = () => {
         alert("Enter selection criteria");
       } else if ((min || max) && !year) {
         if (min && !max) {
-          setFilteredProducts(
-            filteredproducts.filter((item) => item.price >= min)
-          );
+          setFilteredProducts(searchdata.filter((item) => item.price >= min));
         } else if (!min && max) {
-          setFilteredProducts(
-            filteredproducts.filter((item) => item.price <= max)
-          );
+          setFilteredProducts(searchdata.filter((item) => item.price <= max));
         } else {
           setFilteredProducts(
-            filteredproducts.filter(
-              (item) => item.price >= min && item.price <= max
-            )
+            searchdata.filter((item) => item.price >= min && item.price <= max)
           );
         }
         // alert("min and max but not year");
       } else if (!min && !max && year) {
-        setFilteredProducts(
-          filteredproducts.filter((item) => item.year == year)
-        );
+        setFilteredProducts(searchdata.filter((item) => item.year == year));
         // alert("no min and max but have year");
       } else if ((min || max) && year) {
         if (min && !max) {
           setFilteredProducts(
-            filteredproducts.filter(
-              (item) => item.price >= min && item.year == year
-            )
+            searchdata.filter((item) => item.price >= min && item.year == year)
           );
         } else if (!min && max) {
           setFilteredProducts(
-            filteredproducts.filter(
-              (item) => item.price <= max && item.year == year
-            )
+            searchdata.filter((item) => item.price <= max && item.year == year)
           );
         } else {
           setFilteredProducts(
-            filteredproducts.filter(
+            searchdata.filter(
               (item) =>
                 item.price >= min && item.price <= max && item.year == year
             )
@@ -176,30 +198,30 @@ const Product = () => {
         alert("Enter selection criteria");
       } else if ((min || max) && !year) {
         if (min && !max) {
-          setFilteredProducts(data.filter((item) => item.price >= min));
+          setFilteredProducts(showdatax.filter((item) => item.price >= min));
         } else if (!min && max) {
-          setFilteredProducts(data.filter((item) => item.price <= max));
+          setFilteredProducts(showdatax.filter((item) => item.price <= max));
         } else {
           setFilteredProducts(
-            data.filter((item) => item.price >= min && item.price <= max)
+            showdatax.filter((item) => item.price >= min && item.price <= max)
           );
         }
         // alert("min and max but not year");
       } else if (!min && !max && year) {
-        setFilteredProducts(data.filter((item) => item.year == year));
+        setFilteredProducts(showdatax.filter((item) => item.year == year));
         // alert("no min and max but have year");
       } else if ((min || max) && year) {
         if (min && !max) {
           setFilteredProducts(
-            data.filter((item) => item.price >= min && item.year == year)
+            showdatax.filter((item) => item.price >= min && item.year == year)
           );
         } else if (!min && max) {
           setFilteredProducts(
-            data.filter((item) => item.price <= max && item.year == year)
+            showdatax.filter((item) => item.price <= max && item.year == year)
           );
         } else {
           setFilteredProducts(
-            data.filter(
+            showdatax.filter(
               (item) =>
                 item.price >= min && item.price <= max && item.year == year
             )

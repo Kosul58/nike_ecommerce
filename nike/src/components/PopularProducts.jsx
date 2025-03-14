@@ -20,7 +20,7 @@ const PopularProducts = () => {
         ))}
       </div>
       <Link to="/product">
-        <button className="w-[20%] h-16 absolute left-1/2 transform -translate-x-1/2 mt-10 rounded-xl bg-coral-red text-cyan-50 text-2xl hover:bg-green-300 hover:text-black">
+        <button className="w-[20%] h-16 min-w-[200px] max-sm:mt-2 absolute left-1/2 transform -translate-x-1/2 mt-10 rounded-xl bg-coral-red text-cyan-50 text-2xl hover:bg-green-300 hover:text-black">
           View all Products
         </button>
       </Link>

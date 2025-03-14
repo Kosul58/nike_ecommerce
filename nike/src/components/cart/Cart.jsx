@@ -91,7 +91,7 @@ const Cart = () => {
                   <img
                     src={item.image}
                     alt={item.label}
-                    className="w-[200px] h-[200px] object-contain"
+                    className="max-w-[200px] max-h-[200px] object-contain rounded-xl"
                   />
                   <h1 className="flex justify-center items-start px-2 flex-col max-w-[150px] bg-white rounded-lg mb-4">
                     Name:
