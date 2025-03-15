@@ -280,6 +280,7 @@ const Product = () => {
         size={30}
         onClick={showmodalfilter}
       />
+
       {/* modalfilter starts here */}
       <aside
         className={`fixed top-[120px] w-[50%] h-[70vh] min-h-[400px] rounded-xl overflow-y-auto no-scrollbar gap-2 ${
@@ -376,10 +377,10 @@ const Product = () => {
         </div>
       </aside>
       {/* modalfilter ends here */}
-      <div className="absolute top-[80px] w-[100%] min-h-[80vh] h-auto bg-inherit flex justify-center items-start gap-4">
+      <div className="absolute top-[80px]  w-[100%] min-h-[80vh] h-auto bg-inherit flex justify-center items-start gap-4">
         {/* product filter section */}
-        <aside className=" sticky top-[15%] w-[20%] min-w-[200px] h-[70vh] min-h-[600px] rounded-xl overflow-y-auto no-scrollbar  max-sm:hidden gap-2 ml-8">
-          <div className="w-[100%] h-[40px]  flex justify-center items-center text-xl">
+        <aside className="sticky top-[15%] max-w-[400px] w-[20%] min-w-[250px] h-[70vh] min-h-[600px] rounded-xl overflow-y-auto no-scrollbar  max-sm:hidden gap-2 ml-8 max-[800px]:ml-[120px] max-[1000px]:ml-[100px]">
+          <div className="w-[100%] h-[40px] flex justify-center items-center text-xl">
             <h2 className="font-mono text-3xl text-coral-red font-bold">
               {" "}
               Filters
@@ -392,7 +393,7 @@ const Product = () => {
                 type="number"
                 name="minp"
                 id="minp"
-                className="w-[120px] h-[50px] px-3 rounded-lg shadow-md"
+                className="w-[100px] h-[50px] px-3 rounded-lg shadow-md"
                 placeholder="$min"
                 ref={minprice}
                 min={1}
@@ -401,7 +402,7 @@ const Product = () => {
                 type="number"
                 name="maxp"
                 id="maxp"
-                className="w-[120px] h-[50px] px-3 rounded-lg shadow-md"
+                className="w-[100px] h-[50px] px-3 rounded-lg shadow-md"
                 placeholder="$max"
                 ref={maxprice}
                 min={1}
